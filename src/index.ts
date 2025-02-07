@@ -4,7 +4,7 @@ import { RoomEvent, ClientEvent } from "matrix-js-sdk";
 import handleMessage from "./messages";
 import handleReaction from "./reactions";
 
-const { homeserver, access_token, userId } = process.env;
+const { homeserver, access_token, userId, whatsAppRoomId } = process.env;
 
 const client = sdk.createClient({
   baseUrl: `https://matrix.${homeserver}`,
@@ -32,7 +32,11 @@ const start = async () => {
       }
 
       if (event.event.sender === userId) {
-        return; //don't reply to messages sent by the tool
+        return; // don't reply to messages sent by the tool
+      }
+
+      if (event.event.room_id !== whatsAppRoomId) {
+        return; // don't activate unless in the active room
       }
 
       if (
