@@ -16,6 +16,50 @@ const hello = async (roomId: string) => {
   );
 };
 
+const sendPersonRequest = (roomId: string, replyText: string) => {
+  sendMessage(
+    roomId,
+    `Quote-reply to this message with the name of the role you want to assign to ${replyText}.`,
+    {
+      person: {
+        name: replyText,
+      },
+      expecting: ROLE_NAME,
+    }
+  );
+};
+
+const assignRole = async (
+  personName: string,
+  roomId: string,
+  replyText: string
+) => {
+  let roleState = await getPseudoState(roomId, PSEUDO_STATE_EVENT_TYPE);
+
+  if (!roleState) {
+    roleState = {
+      content: {
+        assignedRoles: [],
+      },
+    };
+  }
+
+  const { assignedRoles } = roleState.content;
+  assignedRoles.push({
+    id: uuidv4(),
+    person: {
+      name: personName,
+    },
+    role: {
+      name: replyText,
+    },
+  });
+
+  setPseudoState(roomId, PSEUDO_STATE_EVENT_TYPE, { assignedRoles });
+
+  sendMessage(roomId, `You've assigned ${personName} the role ${replyText}.`);
+};
+
 const handleReply = async (event) => {
   const roomId = event.event.room_id;
   const message = event.event.content.body;
@@ -30,44 +74,11 @@ const handleReply = async (event) => {
   const { expecting } = prevEvent.content.context;
 
   if (expecting === PERSON_NAME) {
-    sendMessage(
-      roomId,
-      `Quote-reply to this message with the name of the role you want to assign to ${replyText}.`,
-      {
-        person: {
-          name: replyText,
-        },
-        expecting: ROLE_NAME,
-      }
-    );
+    sendPersonRequest(roomId, replyText);
   }
   if (expecting === ROLE_NAME) {
     const personName = prevEvent.content.context.person.name;
-
-    let roleState = await getPseudoState(roomId, PSEUDO_STATE_EVENT_TYPE);
-
-    if (!roleState) {
-      roleState = {
-        content: {
-          assignedRoles: [],
-        },
-      };
-    }
-
-    const { assignedRoles } = roleState.content;
-    assignedRoles.push({
-      id: uuidv4(),
-      person: {
-        name: personName,
-      },
-      role: {
-        name: replyText,
-      },
-    });
-
-    setPseudoState(roomId, PSEUDO_STATE_EVENT_TYPE, { assignedRoles });
-
-    sendMessage(roomId, `You've assigned ${personName} the role ${replyText}.`);
+    assignRole(personName, roomId, replyText);
   }
 };
 

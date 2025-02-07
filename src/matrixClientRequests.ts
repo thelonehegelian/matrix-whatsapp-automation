@@ -1,30 +1,5 @@
 const { access_token, homeserver } = process.env;
 
-export const getRoomStateEvents = async (roomId: string) => {
-  return fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/state`,
-    {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    }
-  );
-};
-
-export const sendRoomStateEvent = async (roomId: string, newRoomStateEvent) => {
-  return fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/state/${newRoomStateEvent.type}/current`,
-    {
-      method: "PUT",
-      body: JSON.stringify(newRoomStateEvent),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    }
-  );
-};
-
 export const sendEvent = (roomId: string, content: any, type: string) => {
   return fetch(
     `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/send/${type}`,
@@ -69,17 +44,6 @@ export const getRoomEvents = (roomId: string) => {
     {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    }
-  );
-};
-
-export const getProfile = async (userId: string) => {
-  return fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/profile/${userId}`,
-    {
-      headers: {
         Authorization: `Bearer ${access_token}`,
       },
     }

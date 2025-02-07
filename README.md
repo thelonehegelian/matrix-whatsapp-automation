@@ -20,4 +20,4 @@ This app keeps track of roles within a group chat. It has a keyword that the app
 1. Ask your testing buddy to send "hello" to the WhatsApp group
 1. Marvel in delight at your newfound power
 
-For testing you can replace the whatsAppRoomId with just a normal Matrix room id, makes it easier to test yourself.
+For testing you can replace the whatsAppRoomId with just a normal Matrix room id, makes it easier to test by yourself. You will need an additional matrix user in the group with you, however this isn't too difficult to create.

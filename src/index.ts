@@ -32,7 +32,7 @@ const start = async () => {
       }
 
       if (event.event.sender === userId) {
-        return; //don't reply to yourself
+        return; //don't reply to messages sent by the tool
       }
 
       if (
