@@ -7,7 +7,7 @@ import handleReaction from "./reactions";
 const { homeserver, access_token, userId, whatsAppRoomId } = process.env;
 
 const client = sdk.createClient({
-  baseUrl: `https://matrix.${homeserver}`,
+  baseUrl: homeserver,
   accessToken: access_token,
   userId,
 });

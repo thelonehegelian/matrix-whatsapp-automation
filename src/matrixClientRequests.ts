@@ -1,17 +1,14 @@
 const { access_token, homeserver } = process.env;
 
 export const sendEvent = (roomId: string, content: any, type: string) => {
-  return fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/send/${type}`,
-    {
-      method: "POST",
-      body: JSON.stringify(content),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${access_token}`,
-      },
-    }
-  );
+  return fetch(`${homeserver}/_matrix/client/v3/rooms/${roomId}/send/${type}`, {
+    method: "POST",
+    body: JSON.stringify(content),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
 };
 
 export const sendMessage = (roomId: string, message: string, context = {}) => {
@@ -28,7 +25,7 @@ export const sendMessage = (roomId: string, message: string, context = {}) => {
 
 export const getEvent = async (roomId: string, eventId: string) => {
   const response = await fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/event/${eventId}`,
+    `${homeserver}/_matrix/client/v3/rooms/${roomId}/event/${eventId}`,
     {
       headers: {
         Authorization: `Bearer ${access_token}`,
@@ -40,7 +37,7 @@ export const getEvent = async (roomId: string, eventId: string) => {
 
 export const getRoomEvents = (roomId: string) => {
   return fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/messages?limit=10000&dir=b`,
+    `${homeserver}/_matrix/client/v3/rooms/${roomId}/messages?limit=10000&dir=b`,
     {
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +55,7 @@ export const redactEvent = async (
   const txn = Date.now();
 
   return fetch(
-    `https://matrix.${homeserver}/_matrix/client/v3/rooms/${roomId}/redact/${eventId}/${txn}`,
+    `${homeserver}/_matrix/client/v3/rooms/${roomId}/redact/${eventId}/${txn}`,
     {
       method: "PUT",
       body: JSON.stringify({
