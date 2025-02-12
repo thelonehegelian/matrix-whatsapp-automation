@@ -9,10 +9,9 @@ This app keeps track of roles within a group chat. It has a keyword that the app
 1. Clone the repo or fork the REPL
 1. Copy the `.env.example` file and rename `.env`
 1. Register on Matrix ([app.element.io](https://app.element.io) is a popular way)
-1. Copy your user id and access token from Element into the `.env` file
+1. Copy your user id, homeserver and access token from Element into the `.env` file. Here is a screenshot:
 1. Create a WhatsApp group and invite your testing buddy to it
 1. Start conversation with @whatsappbot on a homeserver (find homeserver url at in-person event) and follow the login process
-1. Copy the homeserver url into `.env` file
 1. Open the WhatsApp chat you want to connect to through Element
 1. Copy the room id of the WhatsApp chat into the `.env` file
 1. Run the command `npm install`
