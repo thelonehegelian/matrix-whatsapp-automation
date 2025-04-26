@@ -1,0 +1,43 @@
+label
+none
+card_pos
+bottom
+board
+61b413117e548b18370c0568
+list
+61b4132238717932712692f1
+Name
+Test
+Desc
+This is a test task
+Empty fields:
+Custom Labels
+empty (optional)
+Member
+empty (optional)
+Start Date
+empty (optional)
+Due Date
+empty (optional)
+File Attachments
+empty (optional)
+URL Attachments
+empty (optional)
+Checklist Name
+empty (optional)
+Checklist Items
+empty (optional)
+Card Color
+empty (optional)
+Brightness
+empty (optional)
+URL
+empty (optional)
+Size
+empty (optional)
+Coordinates
+empty (optional)
+Address
+empty (optional)
+Location
+empty (optional)
