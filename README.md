@@ -1,22 +1,42 @@
-# Example Matrix Tool
+# Matrix-WhatsApp Automation
 
-Example app for Matrix chat integration tools.
+This project aims to automate workflows between Matrix and potentially other services like WhatsApp, using the `matrix-js-sdk`.
 
-This app keeps track of roles within a group chat. It has a keyword that the app responds to ("example") and then the rest of the interface is put together from emoji reactions and replies.
+## Features
 
-## Getting started
+*   Connects to a Matrix homeserver.
+*   (Potentially more features to be added based on project development)
 
-1. Clone the repo or fork the REPL
-1. Copy the `.env.example` file and rename `.env`
-1. Register on Matrix ([app.element.io](https://app.element.io) is a popular way)
-1. Copy your user id, homeserver and access token from Element into the `.env` file. Here is a screenshot: ![element user id](https://raw.githubusercontent.com/King-Mob/example-matrix-tool/refs/heads/main/element_user_id.png) ![element homserver and access token](https://raw.githubusercontent.com/King-Mob/example-matrix-tool/refs/heads/main/element_homeserver_access_token.png)
-1. Create a WhatsApp group and invite your testing buddy to it
-1. Start conversation with @whatsappbot on a homeserver (find homeserver url at in-person event) and follow the login process
-1. Open the WhatsApp chat you want to connect to through Element
-1. Copy the room id of the WhatsApp chat into the `.env` file
-1. Run the command `npm install`
-1. Run the command `npm run dev`
-1. Ask your testing buddy to send "hello" to the WhatsApp group
-1. Marvel in delight at your newfound power
+## Integrations
 
-For testing you can replace the whatsAppRoomId with just a normal Matrix room id, makes it easier to test by yourself. You will need an additional matrix user in the group with you, however this isn't too difficult to create.
+*   **Make.com / Integromat:** Contains logic for interacting with Make.com scenarios.
+    *   Currently includes an integration with Trello (`src/integrations/make/trello.ts`).
+
+## Technology Stack
+
+*   Node.js
+*   TypeScript
+*   `matrix-js-sdk`
+
+## Getting Started
+
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+2.  **Configure environment variables:** (You might need a `.env` file or similar for credentials like Matrix access tokens)
+    *   `MATRIX_HOMESERVER_URL`
+    *   `MATRIX_USER_ID`
+    *   `MATRIX_ACCESS_TOKEN`
+3.  **Run the application:**
+    ```bash
+    npm start # Or your specific run command, e.g., ts-node src/index.ts
+    ```
+
+## Development
+
+(Add details about running in development mode, linting, testing, etc.)
+
+## Contributing
+
+(Add guidelines for contributing to the project.)
