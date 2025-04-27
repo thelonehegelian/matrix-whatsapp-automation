@@ -1,4 +1,4 @@
-# Matrix-WhatsApp Automation
+#  WhatsApp Automation with Matrix
 
 This project aims to automate workflows between Matrix and potentially other services like WhatsApp, using the `matrix-js-sdk`.
 
